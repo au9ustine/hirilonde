@@ -9,8 +9,6 @@ before_install:
 script: true
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master"]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push au9ustine/hirilonde;
-    fi
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker push au9ustine/hirilonde:latest
   
