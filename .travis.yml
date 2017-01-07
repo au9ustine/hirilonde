@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t au9ustine/hirilonde .
+  - docker build -t au9ustine/hirilonde -f Dockerfile.haproxy .
 
 # after_success:
 #   - if [ "$TRAVIS_BRANCH" == "master"]; then
