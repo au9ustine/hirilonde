@@ -1,0 +1,22 @@
+FROM haproxy:1.7
+
+# Deb installation
+RUN \
+  echo "deb http://httpredir.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/backports.list && \
+  apt-get update && \
+  apt-get install -y wget vim rsyslog && \
+  apt-get install -y -t jessie-backports openssl libssl-dev && \
+  wget -c -O /bin/confd https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 && \
+  chmod +x /bin/confd && \
+  mkdir -pv /var/hirilonde /etc/confd && \
+  cd /var/hirilonde
+ADD . /var/hirilonde
+WORKDIR /var/hirilonde
+RUN \
+  ./makecert.sh && \
+  cp -vr etc/confd /etc/ && \
+  rm -rf /tmp/* /var/tmp/*
+
+# Run
+ENTRYPOINT ["/var/hirilonde/entrypoint.sh"]
+CMD ["haproxy", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]

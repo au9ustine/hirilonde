@@ -1,0 +1,31 @@
+global
+  log      127.0.0.1 local0 debug
+  daemon
+
+defaults
+  log      global
+  mode     tcp
+  option   tcplog
+  timeout  connect  5000
+  timeout  client   50000
+  timeout  server   50000
+
+{{ if eq (getenv "HIRILONDE_MODE") "client" }}
+frontend ambassador-server
+  bind            *:{{ getenv "HIRILONDE_SRC_PORT" }}
+  mode            tcp
+  default_backend ambassador-client
+
+backend ambassador-client
+  mode    tcp
+  server  remote {{ getenv "HIRILONDE_DST_HOST" }}:{{ getenv "HIRILONDE_DST_PORT" }} check verify required ssl crt {{ getenv "HIRILONDE_CERT_PATH" }} ca-file {{ getenv "HIRILONDE_CERT_PATH" }} force-tlsv12
+{{ else }}
+frontend ambassador-server
+  bind            *:{{ getenv "HIRILONDE_SRC_PORT" }} ssl crt {{ getenv "HIRILONDE_CERT_PATH" }} force-tlsv12
+  mode            tcp
+  default_backend ambassador-client
+
+backend ambassador-client
+  mode    tcp
+  server  remote {{ getenv "HIRILONDE_DST_HOST" }}:{{ getenv "HIRILONDE_DST_PORT" }} check
+{{ end }}

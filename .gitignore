@@ -1,0 +1,5 @@
+*~
+*.pem
+docker-compose.yml
+*.gv
+*.pdf
