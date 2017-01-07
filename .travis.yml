@@ -6,9 +6,11 @@ services:
 before_install:
   - docker build -t au9ustine/hirilonde -f Dockerfile.haproxy .
 
-# after_success:
-#   - if [ "$TRAVIS_BRANCH" == "master"]; then
-#     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-#     docker push au9ustine/hirilonde;
-#     fi
+script: true
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master"]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push au9ustine/hirilonde;
+    fi
   
