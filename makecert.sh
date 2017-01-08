@@ -14,7 +14,7 @@ openssl req \
         -config openssl.cnf \
         -out hirilonde.pem \
         -keyout hirilonde.pem \
-        -subj "/C=CN/ST=Shanghai/L=Shanghai/O=au9ustine/OU=DevOps/CN=localhost"
+        -subj "/C=CN/ST=Shanghai/L=Shanghai/O=au9ustine/OU=DevOps/CN=172.19.0.1"
 openssl gendh 2048 >> hirilonde.pem
 
 # Destroy seeds

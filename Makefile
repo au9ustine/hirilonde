@@ -5,6 +5,13 @@ COMMIT_BRANCH = $(shell git symbolic-ref --short HEAD)
 versioning:
 	echo "git_branch: $(COMMIT_BRANCH)\ngit_hash: $(COMMIT_HASH)" > .build.yml
 
+# Development
+dev-up:
+	docker-compose up -d
+
+dev-down:
+	docker-compose down --rmi all || true
+
 # Circle CI
 
 # Circle CI - Dependencies
