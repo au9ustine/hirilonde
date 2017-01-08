@@ -17,4 +17,8 @@ Start docker with environment variabled defined below:
 - `HIRILONDE_MODE`: Working mode, only allowed as either `client` or `server`
 - `HIRILONDE_CERT_PATH`: Certificate path, default would be `/var/hirilonde/hirilonde.pem` which is built in the image only for dev/debug use.
 
+## Known Issues
+
+- It does not work under docker on MacOS. (The failure might be caused by different docker network configuration, but root cause would be explored deeper)
+
 ~~up主今天太懒不想写文档~~
