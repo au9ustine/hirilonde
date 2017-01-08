@@ -6,7 +6,7 @@ dependencies:
   cache_directories:
     - "~/docker-cache/"
   pre:
-    - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+    - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" -e "$DOCKER_EMAIL"
     - make circleci-dependencies
 
 test:
