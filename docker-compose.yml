@@ -1,0 +1,22 @@
+version: '2'
+services:
+  client:
+    image: au9ustine/hirilonde:latest
+    ports:
+      - "23333:23333"
+    environment:
+      - HIRILONDE_SRC_PORT=23333
+      - HIRILONDE_DST_HOST=0.0.0.0
+      - HIRILONDE_DST_PORT=23334
+      - HIRILONDE_MODE=client
+      - HIRILONDE_CERT_PATH=/var/hirilonde/hirilonde.pem
+  server:
+    image: au9ustine/hirilonde:latest
+    ports:
+      - "23334:23334"
+    environment:
+      - HIRILONDE_SRC_PORT=23334
+      - HIRILONDE_DST_HOST=0.0.0.0
+      - HIRILONDE_DST_PORT=23335
+      - HIRILONDE_MODE=server
+      - HIRILONDE_CERT_PATH=/var/hirilonde/hirilonde.pem
