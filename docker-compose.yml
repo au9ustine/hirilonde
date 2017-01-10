@@ -6,7 +6,7 @@ services:
       - "23333:23333"
     environment:
       - HIRILONDE_SRC_PORT=23333
-      - HIRILONDE_DST_HOST=172.21.0.1
+      - HIRILONDE_DST_HOST=server
       - HIRILONDE_DST_PORT=23334
       - HIRILONDE_MODE=client
       - HIRILONDE_CERT_PATH=/var/hirilonde/hirilonde.pem
@@ -16,7 +16,7 @@ services:
       - "23334:23334"
     environment:
       - HIRILONDE_SRC_PORT=23334
-      - HIRILONDE_DST_HOST=172.21.0.1
+      - HIRILONDE_DST_HOST=localhost
       - HIRILONDE_DST_PORT=23335
       - HIRILONDE_MODE=server
       - HIRILONDE_CERT_PATH=/var/hirilonde/hirilonde.pem
